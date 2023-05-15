@@ -17,8 +17,9 @@
         @include("page.layouts.header")
 
         @include("page.layouts.sidebar")
-        <div class="main">
 
+        <div class="main">
+            @yield("content")
         </div>
 
         <div class="clearfix"></div>
