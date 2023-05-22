@@ -31,3 +31,11 @@ Route::group(["middleware" => ["guest"]], function() {
 Route::prefix("super_admin")->group(function() {
     Route::get("/dashboard", [AppController::class, "dashboard"]);
 });
+
+Route::prefix("wadir")->group(function() {
+    Route::get("/dashboard", [AppController::class, "dashboard_wadir"]);
+});
+
+Route::prefix("ormawa")->group(function() {
+    Route::get("/dashboard", [AppController::class, "dashboard_ormawa"]);
+});
