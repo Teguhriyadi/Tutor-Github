@@ -1,58 +1,127 @@
-<!doctype html>
-<html lang="en" class="fullscreen-bg">
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Login | Klorofil - Free Bootstrap Dashboard Template</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="{{ url('') }}/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{ url('') }}/assets/vendor/linearicons/style.css">
-    <link rel="stylesheet" href="{{ url('') }}/assets/css/main.css">
-    <link rel="stylesheet" href="{{ url('') }}/assets/css/demo.css">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ url('') }}/assets/img/apple-icon.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{ url('') }}/assets/img/favicon.png">
+    <meta name="author" content="Kodinger">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Login Aplikasi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        html,body {
+            font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+            height: 100%;
+        }
+    </style>
 </head>
 
-<body>
-    <div id="wrapper">
-        <div class="vertical-align-wrap">
-            <div class="vertical-align-middle">
-                <div class="auth-box ">
-                    <div class="left">
-                        <div class="content">
-                            <div class="header">
-                                <div class="logo text-center"><img src="assets/img/logo-dark.png" alt="Klorofil Logo">
-                                </div>
-                                <p class="lead">Login to your account</p>
-                            </div>
-                            <form class="form-auth-small" method="POST" action="{{ url('/login') }}">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="email" class="control-label sr-only">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <label for="password" class="control-label sr-only">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">LOGIN</button>
-                            </form>
+<body class="my-login-page" style="background-color: #6395B9
+;">
+    <div style="margin-top: 60px"></div>
+    <div class="row p-0 m-0" style="justify-content: center; align-items: center;">
+        <div class="col-md-5">
+            <div class="card">
+                <form action="{{ url('/login') }}" method="POST">
+                    @csrf
+                    <div class="card-body">
+                        <div class="image">
+                            <center>
+                                <img src="{{ url('/image/logo-polindra.png') }}" style="width: 20%; height: 20%">
+                            </center>
                         </div>
-                    </div>
-                    <div class="right">
-                        <div class="overlay"></div>
-                        <div class="content text">
-                            <h1 class="heading">Perizinan Ormawa</h1>
+                        <h4 class="text-center" style="margin-top: 20px">Aplikasi Pengajuan Izin dan Pelaporan Kegiatan Organisasi Mahasiswa</h4>
+                        <h6 class="text-center" style="color: gray">
+                            Politeknik Negeri Indramayu
+                        </h6>
+    
+                        <div class="form-group">
+                            <label for="email">E - MAIL</label>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Masukkan E - Mail">
                         </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="password">KATA SANDI</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Masukkan Password" required data-eye>
+                        </div>
+                        
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%; background-color: #00A0F0">
+                            Masuk
+                        </button>
                     </div>
-                    <div class="clearfix"></div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            
+            $("input[type='password'][data-eye]").each(function(i) {
+                var $this = $(this),
+                id = 'eye-password-' + i,
+                el = $('#' + id);
+                
+                $this.wrap($("<div/>", {
+                    style: 'position:relative',
+                    id: id
+                }));
+                
+                $this.css({
+                    paddingRight: 60
+                });
+                $this.after($("<div/>", {
+                    html: '<i class="fa fa-eye"></i>',
+                    id: 'passeye-toggle-'+i,
+                }).css({
+                    position: 'absolute',
+                    right: 10,
+                    top: ($this.outerHeight() / 2) - 12,
+                    padding: '2px 7px',
+                    fontSize: 12,
+                    cursor: 'pointer',
+                }));
+                
+                $this.after($("<input/>", {
+                    type: 'hidden',
+                    id: 'passeye-' + i
+                }));
+                
+                var invalid_feedback = $this.parent().parent().find('.invalid-feedback');
+                
+                if(invalid_feedback.length) {
+                    $this.after(invalid_feedback.clone());
+                }
+                
+                $this.on("keyup paste", function() {
+                    $("#passeye-"+i).val($(this).val());
+                });
+                $("#passeye-toggle-"+i).on("click", function() {
+                    if($this.hasClass("show")) {
+                        $this.attr('type', 'password');
+                        $this.removeClass("show");
+                        $(this).removeClass("btn-outline-primary");
+                    }else{
+                        $this.attr('type', 'text');
+                        $this.val($("#passeye-"+i).val());				
+                        $this.addClass("show");
+                        $(this).addClass("btn-outline-primary");
+                    }
+                });
+            });
+            
+            $(".my-login-validation").submit(function() {
+                var form = $(this);
+                if (form[0].checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.addClass('was-validated');
+            });
+        });
+    </script>
 </body>
-
 </html>

@@ -15,15 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get("/templating", function() {
     return view("templating");
 });
 
 Route::group(["middleware" => ["guest"]], function() {
+    Route::get("/", [LoginController::class, "login"]);
     Route::get("/login", [LoginController::class, "login"]);
     Route::post("/login", [LoginController::class, "post_login"]);
 });
