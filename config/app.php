@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => "Aplikasi Pengajuan Izin dan Kegiatan ORMAWA",
 
     /*
     |--------------------------------------------------------------------------

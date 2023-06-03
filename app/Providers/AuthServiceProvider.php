@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -21,6 +21,30 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->registerPolicies();
+
+        Gate::define("admin", function($user) {
+            if (empty($user->role)) {
+                return redirect("/logout");
+            } else {
+                return $user->role == "admin";
+            }
+        });
+
+        Gate::define("wadir", function($user) {
+            if (empty($user->role)) {
+                return redirect("/logout");
+            } else {
+                return $user->role == "wadir";
+            }
+        });
+
+        Gate::define("ormawa", function($user) {
+            if (empty($user->role)) {
+                return redirect("/logout");
+            } else {
+                return $user->role == "ormawa";
+            }
+        });
     }
 }

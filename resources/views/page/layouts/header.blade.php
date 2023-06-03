@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="brand">
-        <a href="index.html">
+        <a>
             <img src="{{ url('') }}/assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo">
         </a>
     </div>
@@ -21,32 +21,16 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ url('') }}/assets/img/user.png" class="img-circle" alt="Avatar">
-                        <span>Samuel</span>
+                        <span>
+                            {{ Auth::user()->name }}
+                        </span>
                         <i class="icon-submenu lnr lnr-chevron-down"></i>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#">
                                 <i class="lnr lnr-user"></i>
-                                <span>My Profile</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="lnr lnr-envelope"></i>
-                                <span>Message</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="lnr lnr-cog"></i>
-                                <span>Settings</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="lnr lnr-exit"></i>
-                                <span>Logout</span>
+                                <span>Profil Saya</span>
                             </a>
                         </li>
                     </ul>
