@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\SuperAdmin\AppController;
+use App\Http\Controllers\SuperAdmin\User\PenggunaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,7 @@ Route::group(["middleware" => ["is_admin"]], function() {
     Route::group(["middleware" => ["can:admin"]], function() {
         Route::prefix("super_admin")->group(function() {
             Route::get("/dashboard", [AppController::class, "dashboard"]);
+            Route::resource('pengguna', PenggunaController::class);
         });
     });
 
