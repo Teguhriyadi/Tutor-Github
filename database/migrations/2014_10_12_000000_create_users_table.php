@@ -19,6 +19,8 @@ return new class extends Migration
             $table->integer("created_by")->nullable();
             $table->string("foto")->nullable();
             $table->enum("role", ["admin", "wadir", "ormawa"]);
+            $table->enum("status", [1, 0])->default(0);
+            $table->text("deskripsi")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

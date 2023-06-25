@@ -30,7 +30,14 @@ Route::group(["middleware" => ["is_admin"]], function() {
     Route::group(["middleware" => ["can:admin"]], function() {
         Route::prefix("super_admin")->group(function() {
             Route::get("/dashboard", [AppController::class, "dashboard"]);
-            Route::resource('pengguna', PenggunaController::class);
+            Route::prefix("data_pengguna")->group(function() {
+                Route::get("/", [PenggunaController::class, "index"]);
+                Route::get("/create", [PenggunaController::class, "create"]);
+                Route::post("/store", [PenggunaController::class, "store"]);
+                Route::get("/show/{id}", [PenggunaController::class, "show"]);
+                Route::put("/update/{id}", [PenggunaController::class, "update"]);
+                Route::delete("/destroy/{id}", [PenggunaController::class, "destroy"]);
+            });
         });
     });
 

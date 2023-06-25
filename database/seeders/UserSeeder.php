@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
             "name" => "Super Admin",
             "email" => "super_admin@gmail.com",
             "password" => bcrypt("super_admin"),
-            "role" => "admin"
+            "role" => "admin",
+            "status" => 1
         ]);
 
         User::create([
@@ -27,7 +28,8 @@ class UserSeeder extends Seeder
             "name" => "Wadir",
             "email" => "wadir@gmail.com",
             "password" => bcrypt("wadir"),
-            "role" => "wadir"
+            "role" => "wadir",
+            "status" => 1
         ]);
 
         User::create([
@@ -35,7 +37,8 @@ class UserSeeder extends Seeder
             "name" => "HIMATIF",
             "email" => "himatif@gmail.com",
             "password" => bcrypt("himatif"),
-            "role" => "ormawa"
+            "role" => "ormawa",
+            "status" => 1
         ]);
     }
 }
