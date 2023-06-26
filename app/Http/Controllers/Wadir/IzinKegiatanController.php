@@ -13,7 +13,7 @@ class IzinKegiatanController extends Controller
     public function index()
     {
         return DB::transaction(function() {
-            $data['izin_kegiatan'] = IzinKegiatan::get();
+            $data['izin_kegiatan'] = IzinKegiatan::orderBy("created_at", "ASC")->get();
 
             return view("page.wadir.izin_kegiatan.v_index", $data);
         });
