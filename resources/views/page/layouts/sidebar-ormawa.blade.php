@@ -24,7 +24,7 @@
         </a>
     </li>
     <li>
-        <a href="">
+        <a href="{{ url('/ormawa/ganti_password') }}" class="{{ Request::segment(2) == "ganti_password" ? 'active' : '' }}">
             <i class="fa fa-key"></i>
             <span>Ganti Password</span>
         </a>

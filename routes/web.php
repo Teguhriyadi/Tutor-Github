@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\Autentikasi\LoginController;
+use App\Http\Controllers\Ormawa\GantiPasswordController;
 use App\Http\Controllers\Ormawa\IzinKegiatanController;
 use App\Http\Controllers\Ormawa\LaporanKegiatanController;
 use App\Http\Controllers\Ormawa\ProfilSayaController;
 use App\Http\Controllers\SuperAdmin\AppController;
+use App\Http\Controllers\SuperAdmin\GantiPasswordController as SuperAdminGantiPasswordController;
 use App\Http\Controllers\SuperAdmin\IzinKegiatanController as SuperAdminIzinKegiatanController;
 use App\Http\Controllers\SuperAdmin\ProfilSayaController as SuperAdminProfilSayaController;
 use App\Http\Controllers\SuperAdmin\User\PenggunaController;
+use App\Http\Controllers\Wadir\GantiPasswordController as WadirGantiPasswordController;
 use App\Http\Controllers\Wadir\IzinKegiatanController as WadirIzinKegiatanController;
 use App\Http\Controllers\Wadir\ProfilSayaController as WadirProfilSayaController;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +59,11 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/", [SuperAdminProfilSayaController::class, "index"]);
                 Route::put("/update/{id}", [SuperAdminProfilSayaController::class, "update"]);
             });
+
+            Route::prefix("ganti_password")->group(function() {
+                Route::get("/", [SuperAdminGantiPasswordController::class, "index"]);
+                Route::put("/update/{id}", [SuperAdminGantiPasswordController::class, "update"]);
+            });
         });
     });
 
@@ -73,6 +81,10 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::put("/update/{id}", [WadirProfilSayaController::class, "update"]);
             });
 
+            Route::prefix("ganti_password")->group(function() {
+                Route::get("/", [WadirGantiPasswordController::class, "index"]);
+                Route::put("/update/{id}", [WadirGantiPasswordController::class, "update"]);
+            });
         });
     });
     
@@ -98,6 +110,11 @@ Route::group(["middleware" => ["is_admin"]], function() {
             Route::prefix("profil_saya")->group(function() {
                 Route::get("/", [ProfilSayaController::class, "index"]);
                 Route::put("/update/{id}", [ProfilSayaController::class, "update"]);
+            });
+
+            Route::prefix("ganti_password")->group(function() {
+                Route::get("/", [GantiPasswordController::class, "index"]);
+                Route::put("/update/{id}", [GantiPasswordController::class, "update"]);
             });
         });
     });
