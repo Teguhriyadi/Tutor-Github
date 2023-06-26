@@ -24,7 +24,7 @@
 
         @include("page.layouts.sidebar")
 
-        <div class="main">
+        <div class="main" style="padding-top: 120px;">
             @yield("content")
         </div>
 

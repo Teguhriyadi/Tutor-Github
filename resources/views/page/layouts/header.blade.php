@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="brand">
         <a>
-            <img src="{{ url('') }}/assets/img/logo-dark.png" alt="Klorofil Logo" class="img-responsive logo">
+            <img src="{{ url('/image/logo-polindra.png') }}" class="img-responsive logo" style="width: 50px; margin-left: 70px;">
         </a>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding-top: 10px;">
         <div class="navbar-btn">
             <button type="button" class="btn-toggle-fullwidth">
                 <i class="lnr lnr-arrow-left-circle"></i>

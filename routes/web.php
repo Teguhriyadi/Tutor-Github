@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\Autentikasi\LoginController;
 use App\Http\Controllers\Ormawa\IzinKegiatanController;
+use App\Http\Controllers\Ormawa\LaporanKegiatanController;
+use App\Http\Controllers\Ormawa\ProfilSayaController;
 use App\Http\Controllers\SuperAdmin\AppController;
 use App\Http\Controllers\SuperAdmin\IzinKegiatanController as SuperAdminIzinKegiatanController;
+use App\Http\Controllers\SuperAdmin\ProfilSayaController as SuperAdminProfilSayaController;
 use App\Http\Controllers\SuperAdmin\User\PenggunaController;
 use App\Http\Controllers\Wadir\IzinKegiatanController as WadirIzinKegiatanController;
+use App\Http\Controllers\Wadir\ProfilSayaController as WadirProfilSayaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +51,11 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/show/{id}", [SuperAdminIzinKegiatanController::class, "show"]);
                 Route::put("/update/{id}", [SuperAdminIzinKegiatanController::class, "update"]);
             });
+
+            Route::prefix("profil_saya")->group(function() {
+                Route::get("/", [SuperAdminProfilSayaController::class, "index"]);
+                Route::put("/update/{id}", [SuperAdminProfilSayaController::class, "update"]);
+            });
         });
     });
 
@@ -58,6 +67,12 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/show/{id}", [WadirIzinKegiatanController::class, "show"]);
                 Route::put("/update/{id}", [WadirIzinKegiatanController::class, "update"]);
             });
+
+            Route::prefix("profil_saya")->group(function() {
+                Route::get("/", [WadirProfilSayaController::class, "index"]);
+                Route::put("/update/{id}", [WadirProfilSayaController::class, "update"]);
+            });
+
         });
     });
     
@@ -72,6 +87,17 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/show/{id}", [IzinKegiatanController::class, "show"]);
                 Route::put("/update/{id}", [IzinKegiatanController::class, "update"]);
                 Route::delete("/destroy/{id}", [IzinKegiatanController::class, "destroy"]);
+            });
+
+            Route::prefix("laporan_kegiatan")->group(function() {
+                Route::get("/", [LaporanKegiatanController::class, "index"]);
+                Route::get("/create", [LaporanKegiatanController::class, "create"]);
+                Route::post("/store", [LaporanKegiatanController::class, "store"]);
+            });
+
+            Route::prefix("profil_saya")->group(function() {
+                Route::get("/", [ProfilSayaController::class, "index"]);
+                Route::put("/update/{id}", [ProfilSayaController::class, "update"]);
             });
         });
     });

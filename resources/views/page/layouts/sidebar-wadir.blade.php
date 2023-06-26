@@ -17,4 +17,16 @@
             <span>Laporan Kegiatan</span>
         </a>
     </li>
+    <li>
+        <a href="{{ url('/wadir/profil_saya') }}" class="{{ Request::segment(2) == "profil_saya" ? 'active' : '' }}">
+            <i class="fa fa-pencil"></i>
+            <span>Profil Saya</span>
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('/wadir/ganti_password') }}" class="{{ Request::segment(2) == "ganti_password" ? 'active' : '' }}">
+            <i class="fa fa-key"></i>
+            <span>Ganti Password</span>
+        </a>
+    </li>
 </ul>
