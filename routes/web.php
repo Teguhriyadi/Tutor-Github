@@ -103,8 +103,8 @@ Route::group(["middleware" => ["is_admin"]], function() {
 
             Route::prefix("laporan_kegiatan")->group(function() {
                 Route::get("/", [LaporanKegiatanController::class, "index"]);
-                Route::get("/create", [LaporanKegiatanController::class, "create"]);
-                Route::post("/store", [LaporanKegiatanController::class, "store"]);
+                Route::get("{id}/unggah_laporan", [LaporanKegiatanController::class, "create"]);
+                Route::post("/{id}/store", [LaporanKegiatanController::class, "store"]);
             });
 
             Route::prefix("profil_saya")->group(function() {

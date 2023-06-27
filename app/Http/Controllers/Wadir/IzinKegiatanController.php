@@ -45,7 +45,7 @@ class IzinKegiatanController extends Controller
                 "user_validasi_id" => Auth::user()->id
             ]);
 
-            return redirect("/wadir/izin_kegiatan");
+            return redirect("/wadir/izin_kegiatan")->with("message", "Data Berhasil di Simpan");
         });
     }
 }

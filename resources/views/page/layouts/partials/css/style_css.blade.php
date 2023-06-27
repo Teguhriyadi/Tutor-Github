@@ -5,5 +5,4 @@
 <link rel="stylesheet" href="{{ url('') }}/assets/css/main.css">
 <link rel="stylesheet" href="{{ url('') }}/assets/css/demo.css">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
-<link rel="apple-touch-icon" sizes="76x76" href="{{ url('') }}/assets/img/apple-icon.png">
-<link rel="icon" type="image/png" sizes="96x96" href="{{ url('') }}/assets/img/favicon.png">
+<link rel="icon" type="image/png" href="{{ url('/image/logo-polindra.png') }}" />

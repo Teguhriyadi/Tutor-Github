@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string("izin_kegiatan_id", 50);
             $table->string("file_lpj");
             $table->string("foto_dokumentasi");
-            $table->tinyInteger("status");
             $table->softDeletes();
             $table->timestamps();
         });

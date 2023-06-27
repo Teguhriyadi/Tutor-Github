@@ -12,6 +12,10 @@ use Carbon\Carbon;
 
 <div class="main-content">
     <div class="container-fluid">
+        <a href="{{ url('/wadir/izin_kegiatan') }}" class="btn btn-danger btn-sm">
+            <i class="fa fa-sign-out"></i> KEMBALI
+        </a>
+        <br><br>
         <div class="panel panel-headline">
             <div class="panel-heading">
                 <h3 class="panel-title">Izin Kegiatan</h3>
@@ -102,12 +106,12 @@ use Carbon\Carbon;
                                     <option value="2">Ditolak</option>
                                 </select>
                             </div>
-                            @error("status")
-                                <span class="text-danger">
-                                    {{ $message }}
-                                </span>
-                            @enderror
                         </div>
+                        @error("status")
+                            <span class="text-danger">
+                                {{ $message }}
+                            </span>
+                        @enderror
                     </div>
                     <div class="form-group" style="display: none" id="view_komentar">
                         <div class="row">

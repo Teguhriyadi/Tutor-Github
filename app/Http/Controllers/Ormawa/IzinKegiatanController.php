@@ -16,7 +16,7 @@ class IzinKegiatanController extends Controller
     public function index()
     {
         return DB::transaction(function() {
-            $data["izin_kegiatan"] = IzinKegiatan::where("user_id", Auth::user()->id)->orderBy("status", "DESC")->orderBy("created_at", "ASC")->get();
+            $data["izin_kegiatan"] = IzinKegiatan::where("user_id", Auth::user()->id)->orderBy("status", "ASC")->orderBy("created_at", "ASC")->get();
             
             return view("page.ormawa.izin_kegiatan.v_index", $data);
         });
