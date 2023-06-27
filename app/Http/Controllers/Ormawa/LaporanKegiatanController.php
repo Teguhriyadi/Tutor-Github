@@ -16,7 +16,7 @@ class LaporanKegiatanController extends Controller
     {
         return DB::transaction(function() {
 
-            $data["kegiatan"] = IzinKegiatan::where("status", "!=", "0")->where("file_surat_balasan", "!=", NULL)->orderBy("created_at", "ASC")->get();
+            $data["kegiatan"] = IzinKegiatan::where("user_id", Auth::user()->id)->where("status", "!=", "0")->where("file_surat_balasan", "!=", NULL)->orderBy("created_at", "ASC")->get();
 
             return view("page.ormawa.laporan_kegiatan.v_index", $data);
         });

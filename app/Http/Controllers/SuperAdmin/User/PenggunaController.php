@@ -43,7 +43,7 @@ class PenggunaController extends Controller
                 "id" => Uuid::uuid4()->getHex(),
                 "name" => $request["name"],
                 "email" => $request["email"],
-                "password" => bcrypt($request["name"]),
+                "password" => bcrypt("password123"),
                 "role" => $request["role"],
                 "status" => "1",
                 "deskripsi" => $request["deskripsi"]
