@@ -2,12 +2,21 @@
 
 @section("css")
 
+<link rel="stylesheet" href="{{ url('/datatables/css/bootstrap.min.css') }}">
+
 @endsection
 
 @section('content')
 
 <div class="main-content">
     <div class="container-fluid">
+        
+        @if (session("message"))
+        <div class="alert alert-success" role="alert">
+            <strong>Berhasil</strong>. {{ session("message") }}
+        </div>
+        @endif
+        
         <a href="{{ url('/ormawa/izin_kegiatan/create') }}" class="btn btn-primary btn-sm">
             <i class="fa fa-plus"></i> 
             <span style="margin-left: 5px;">
@@ -20,16 +29,16 @@
                 <h3 class="panel-title">Data Izin Kegiatan</h3>
             </div>
             <div class="panel-body">
-                <table class="table">
+                <table id="example" class="table table-striped table-bordered dataTable" style="width:100%" aria-describedby="example_info">
                     <thead>
                         <tr>
-                            <th class="text-center">No.</th>
+                            <th style="text-align: center">No.</th>
                             <th>Nama Kegiatan</th>
-                            <th class="text-center">File Laporan</th>
-                            <th class="text-center">File Surat Balasan</th>
+                            <th style="text-align: center">File Laporan</th>
+                            <th style="text-align: center">File Surat Balasan</th>
                             <th>Tempat</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">Aksi</th>
+                            <th style="text-align: center">Status</th>
+                            <th style="text-align: center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,9 +87,9 @@
                                     <i class="fa fa-search"></i> Selengkapnya
                                 </a>
                                 @if ($item["status"] == "2")
-                                    <a href="{{ url('/ormawa/izin_kegiatan/edit/'.$item['id']) }}" class="btn btn-warning btn-sm">
-                                        <i class="fa fa-edit"></i> Edit
-                                    </a>
+                                <a href="{{ url('/ormawa/izin_kegiatan/edit/'.$item['id']) }}" class="btn btn-warning btn-sm">
+                                    <i class="fa fa-edit"></i> Edit
+                                </a>
                                 @endif
                                 <form action="{{ url('/ormawa/izin_kegiatan/destroy/'.$item["id"]) }}" method="POST" style="display: inline;">
                                     @csrf
@@ -102,6 +111,12 @@
 @endsection
 
 @section('javascript')
+
+<script src="{{ url('/datatables/javascript/dataTables.min.js') }}"></script>
+<script src="{{ url('/datatables/javascript/bootstrap.min.js') }}"></script>
+<script>
+    $('#example').DataTable();
+</script>
 
 @endsection
 

@@ -2,6 +2,8 @@
 
 @section("css")
 
+<link rel="stylesheet" href="{{ url('/datatables/css/bootstrap.min.css') }}">
+
 @endsection
 
 @section('content')
@@ -13,16 +15,16 @@
                 <h3 class="panel-title">Izin Kegiatan</h3>
             </div>
             <div class="panel-body">
-                <table class="table">
+                <table id="example" class="table table-striped table-bordered dataTable" style="width:100%" aria-describedby="example_info">
                     <thead>
                         <tr>
-                            <th class="text-center">No.</th>
+                            <th style="text-align: center">No.</th>
                             <th>Nama UKM</th>
                             <th>Nama Kegiatan</th>
-                            <th class="text-center">File Laporan</th>
+                            <th style="text-align: center">File Laporan</th>
                             <th>Tempat</th>
-                            <th class="text-center">Status</th>
-                            <th class="text-center">Aksi</th>
+                            <th style="text-align: center">Status</th>
+                            <th style="text-align: center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -68,5 +70,10 @@
 
 @section('javascript')
 
-@endsection
+<script src="{{ url('/datatables/javascript/dataTables.min.js') }}"></script>
+<script src="{{ url('/datatables/javascript/bootstrap.min.js') }}"></script>
+<script>
+    $('#example').DataTable();
+</script>
 
+@endsection

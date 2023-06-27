@@ -8,6 +8,17 @@
 
     <div class="main-content">
         <div class="container-fluid">
+
+            @if (session("message_error"))
+            <div class="alert alert-danger" role="alert">
+                <strong>Maaf</strong>. {{ session("message_error") }}
+            </div>
+            @endif
+
+            <a href="{{ url('/ormawa/izin_kegiatan') }}" class="btn btn-danger btn-sm">
+                <i class="fa fa-sign-out"></i> KEMBALI
+            </a>
+            <br><br>
             <div class="panel panel-headline">
                 <div class="panel-heading">
                     <h3 class="panel-title">Unggah Izin Kegiatan</h3>

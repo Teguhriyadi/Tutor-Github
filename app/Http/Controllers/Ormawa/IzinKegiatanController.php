@@ -41,8 +41,6 @@ class IzinKegiatanController extends Controller
             "akhir" => "required",
         ], $message);
         
-        
-        
         return DB::transaction(function() use ($request) {
             if ($request["file_laporan"]) {
                 $data = $request->file("file_laporan")->store("file_laporan");
@@ -62,7 +60,7 @@ class IzinKegiatanController extends Controller
                     "status" => "0",
                 ]);
 
-                return redirect("/ormawa/izin_kegiatan");
+                return redirect("/ormawa/izin_kegiatan")->with("message", "Data Berhasil di Tambahkan");
             } else {
                 $mulai = Carbon::parse($request["mulai"]);
                 $selesai = Carbon::parse($request["akhir"]);
@@ -73,10 +71,11 @@ class IzinKegiatanController extends Controller
                 
                 foreach ($data_kegiatan as $item) {
                     
+                    $tempat = $request["tempat_pelaksanaan"];
                     $tanggalMulai = Carbon::parse($item["mulai"]);
                     $tanggalSelesai = Carbon::parse($item["akhir"]);
 
-                    if ($tanggalMulai->lt($selesai) && $tanggalSelesai->gt($mulai)) {
+                    if ($tempat == $item["tempat"] && $tanggalMulai->lte($selesai) && $tanggalSelesai->gte($mulai)) {
                         $isData = false;
                         break;
                     }
@@ -94,9 +93,9 @@ class IzinKegiatanController extends Controller
                         "status" => "0",
                     ]);
 
-                    return redirect("/ormawa/izin_kegiatan");
+                    return redirect("/ormawa/izin_kegiatan")->with("message", "Data Berhasil di Tambahkan");
                 } else {
-                    return back();
+                    return back()->withInput()->with("message_error", "Tanggal dan Tempat Sudah Ada Yang Mengajukan Terlebih Dahulu");
                 }
             }
         });
