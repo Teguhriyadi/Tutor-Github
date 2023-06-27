@@ -3,22 +3,42 @@
 namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
+use App\Models\IzinKegiatan;
+use App\Models\LaporanKegiatan;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AppController extends Controller
 {
     public function dashboard()
     {
-        return view("page.super_admin.dashboard");
+        $data["data_pengguna"] = User::count();
+        $data["kegiatan_ditolak"] = IzinKegiatan::where("status", "2")->count();
+        $data["kegiatan_disetujui"] = IzinKegiatan::where("status", "1")->count();
+        $data["laporan_kegiatan"] = LaporanKegiatan::count();
+        $data["izin_kegiatan"] = IzinKegiatan::where("status", "0")->count();
+
+        return view("page.super_admin.dashboard", $data);
     }
 
     public function dashboard_wadir()
     {
-        return view("page.wadir.dashboard");
+        $data["izin_kegiatan"] = IzinKegiatan::count();
+        $data["ditolak"] = IzinKegiatan::where("status", "0")->count();
+        $data["disetujui"] = IzinKegiatan::where("status", "1")->count();
+        $data["laporan"] = LaporanKegiatan::count();
+
+        return view("page.wadir.dashboard", $data);
     }
 
     public function dashboard_ormawa()
     {
-        return view("page.ormawa.dashboard");
+        $data["izin_kegiatan"] = IzinKegiatan::where("user_id", Auth::user()->id)->count();
+        $data["ditolak"] = IzinKegiatan::where("user_id", Auth::user()->id)->where("status", "0")->count();
+        $data["disetujui"] = IzinKegiatan::where("user_id", Auth::user()->id)->where("status", "1")->count();
+        $data["laporan"] = LaporanKegiatan::where("user_id", Auth::user()->id)->count();
+
+        return view("page.ormawa.dashboard", $data);
     }
 }

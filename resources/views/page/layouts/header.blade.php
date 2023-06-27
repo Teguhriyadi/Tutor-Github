@@ -20,7 +20,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @if (empty(Auth::user()->foto))
+                        <img src="{{ url('') }}/image/user-empty.png" style="width: 30px" class="img-circle" alt="Avatar">
+                        @else
                         <img src="{{ url('') }}/assets/img/user.png" class="img-circle" alt="Avatar">
+                        @endif
                         <span>
                             {{ Auth::user()->name }}
                         </span>

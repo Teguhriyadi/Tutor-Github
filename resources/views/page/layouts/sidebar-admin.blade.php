@@ -12,8 +12,8 @@
         </a>
     </li>
     <li>
-        <a href="notifications.html" class="">
-            <i class="lnr lnr-alarm"></i>
+        <a href="{{ url('/super_admin/laporan_kegiatan') }}" class="{{ Request::segment(2) == "laporan_kegiatan" ? "active" : '' }}">
+            <i class="fa fa-bar-chart"></i>
             <span>Laporan Kegiatan</span>
         </a>
     </li>

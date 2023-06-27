@@ -8,10 +8,12 @@ use App\Http\Controllers\Ormawa\ProfilSayaController;
 use App\Http\Controllers\SuperAdmin\AppController;
 use App\Http\Controllers\SuperAdmin\GantiPasswordController as SuperAdminGantiPasswordController;
 use App\Http\Controllers\SuperAdmin\IzinKegiatanController as SuperAdminIzinKegiatanController;
+use App\Http\Controllers\SuperAdmin\LaporanKegiatanController as SuperAdminLaporanKegiatanController;
 use App\Http\Controllers\SuperAdmin\ProfilSayaController as SuperAdminProfilSayaController;
 use App\Http\Controllers\SuperAdmin\User\PenggunaController;
 use App\Http\Controllers\Wadir\GantiPasswordController as WadirGantiPasswordController;
 use App\Http\Controllers\Wadir\IzinKegiatanController as WadirIzinKegiatanController;
+use App\Http\Controllers\Wadir\LaporanKegiatanController as WadirLaporanKegiatanController;
 use App\Http\Controllers\Wadir\ProfilSayaController as WadirProfilSayaController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +61,13 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/balasan/{id}", [SuperAdminIzinKegiatanController::class, "file_balasan"]);
             });
 
+            Route::prefix("laporan_kegiatan")->group(function() {
+                Route::get("/", [SuperAdminLaporanKegiatanController::class, "index"]);
+                Route::get("/show/{id}", [SuperAdminLaporanKegiatanController::class, "show"]);
+                Route::get("/laporan/{id}", [SuperAdminLaporanKegiatanController::class, "laporan"]);
+                Route::get("/dokumentasi/{id}", [SuperAdminLaporanKegiatanController::class, "dokumentasi"]);
+            });
+
             Route::prefix("profil_saya")->group(function() {
                 Route::get("/", [SuperAdminProfilSayaController::class, "index"]);
                 Route::put("/update/{id}", [SuperAdminProfilSayaController::class, "update"]);
@@ -79,6 +88,11 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/show/{id}", [WadirIzinKegiatanController::class, "show"]);
                 Route::put("/update/{id}", [WadirIzinKegiatanController::class, "update"]);
                 Route::get("/laporan/{id}", [WadirIzinKegiatanController::class, "file_laporan"]);
+            });
+
+            Route::prefix("laporan_kegiatan")->group(function() {
+                Route::get("/", [WadirLaporanKegiatanController::class, "index"]);
+                Route::get("/show/{id}", [WadirLaporanKegiatanController::class, "show"]);
             });
 
             Route::prefix("profil_saya")->group(function() {

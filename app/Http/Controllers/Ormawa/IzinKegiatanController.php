@@ -151,7 +151,7 @@ class IzinKegiatanController extends Controller
                 "status" => "3",
             ]);
             
-            return redirect("/ormawa/izin_kegiatan");
+            return redirect("/ormawa/izin_kegiatan")->with("message", "Data Berhasil di Simpan");
         });
     }
 
