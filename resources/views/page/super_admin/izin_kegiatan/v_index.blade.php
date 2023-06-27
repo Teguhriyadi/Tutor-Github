@@ -10,6 +10,13 @@
 
 <div class="main-content">
     <div class="container-fluid">
+
+        @if (session("message"))
+        <div class="alert alert-success" role="alert">
+            <strong>Berhasil</strong>. {{ session("message") }}
+        </div>
+        @endif
+
         <div class="panel panel-headline">
             <div class="panel-heading">
                 <h3 class="panel-title">Izin Kegiatan</h3>
@@ -34,7 +41,9 @@
                             <td>{{ $item["users"]["name"] }}</td>
                             <td>{{ $item["nama_kegiatan"] }}</td>
                             <td class="text-center">
-                                <i class="fa fa-download"></i>
+                                <a target="_blank" href="{{ url('/super_admin/izin_kegiatan/laporan/'.$item['id']) }}">
+                                    <i class="fa fa-download"></i>
+                                </a>
                             </td>
                             <td>{{ $item["tempat"] }}</td>
                             <td class="text-center">

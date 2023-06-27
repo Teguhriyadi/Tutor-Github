@@ -48,7 +48,7 @@ use Carbon\Carbon;
                             <div class="col-md-7">
                                 {{ $detail["file_laporan"] }}
                                 <br>
-                                <a href="" class="btn btn-primary btn-sm">
+                                <a target="_blank" href="{{ url('/wadir/izin_kegiatan/laporan/'.$detail['id']) }}" class="btn btn-primary btn-sm">
                                     Unduh File
                                 </a>
                             </div>

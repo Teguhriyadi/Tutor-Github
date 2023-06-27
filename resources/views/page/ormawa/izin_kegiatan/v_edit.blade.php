@@ -93,7 +93,7 @@
                             <div class="row">
                                 <label class="control-label col-sm-3"> File Laporan </label>
                                 <div class="col-md-7">
-                                    <a href="" class="btn btn-primary btn-sm">
+                                    <a target="_blank" href="{{ url('/ormawa/izin_kegiatan/laporan/'.$edit["id"]) }}" class="btn btn-primary btn-sm">
                                         Unduh File
                                     </a>
                                 </div>

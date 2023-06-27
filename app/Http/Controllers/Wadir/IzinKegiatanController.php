@@ -48,4 +48,13 @@ class IzinKegiatanController extends Controller
             return redirect("/wadir/izin_kegiatan")->with("message", "Data Berhasil di Simpan");
         });
     }
+
+    public function file_laporan($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $laporan = IzinKegiatan::where("id", $id)->first();
+
+            return response()->download("storage/".$laporan["file_laporan"]);
+        });
+    }
 }

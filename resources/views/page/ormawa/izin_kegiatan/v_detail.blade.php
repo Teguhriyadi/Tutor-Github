@@ -33,8 +33,8 @@
                         <div class="row">
                             <label for="file_surat_izin" class="col-md-3"> File Surat Izin </label>
                             <div class="col-md-7">
-                                <a href="" class="btn btn-primary btn-sm">
-                                    Unduh File
+                                <a target="_blank" href="{{ url('/ormawa/izin_kegiatan/laporan/'.$detail['id']) }}" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-download"></i> Unduh File
                                 </a>
                             </div>
                         </div>
@@ -48,8 +48,8 @@
                                         Belum Ada Surat Balasan    
                                     </span>    
                                 @else
-                                <a href="" class="btn btn-primary btn-sm">
-                                    Unduh File
+                                <a target="_blank" href="{{ url('/ormawa/izin_kegiatan/balasan/'.$detail["id"]) }}" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-download"></i> Unduh File
                                 </a>
                                 @endif
                             </div>
@@ -86,8 +86,8 @@
                             <label for="status" class="col-md-3"> Status </label>
                             <div class="col-md-7">
                                 @if ($detail["status"] == 1)
-                                    <button class="btn btn-primary btn-sm">
-                                        DISETUJUI
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="fa fa-check"></i> DISETUJUI
                                     </button>
                                 @elseif($detail["status"] == 2)
                                 <button class="btn btn-danger btn-sm">

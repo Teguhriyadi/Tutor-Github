@@ -46,7 +46,25 @@ class IzinKegiatanController extends Controller
                 "file_surat_balasan" => $data
             ]);
 
-            return redirect("/super_admin/izin_kegiatan");
+            return redirect("/super_admin/izin_kegiatan")->with("message", "Data Berhasil di Simpan");
+        });
+    }
+
+    public function file_laporan($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $laporan = IzinKegiatan::where("id", $id)->first();
+
+            return response()->download("storage/".$laporan["file_laporan"]);
+        });
+    }
+
+    public function file_balasan($id)
+    {
+        return DB::transaction(function () use ($id) {
+            $balasan = IzinKegiatan::where("id", $id)->first();
+
+            return response()->download("storage/".$balasan["file_surat_balasan"]);
         });
     }
 }

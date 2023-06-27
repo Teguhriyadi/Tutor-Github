@@ -154,4 +154,22 @@ class IzinKegiatanController extends Controller
             return redirect("/ormawa/izin_kegiatan");
         });
     }
+
+    public function file_laporan($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $data = IzinKegiatan::where("id", $id)->first();
+
+            return response()->download("storage/".$data["file_laporan"]);
+        });
+    }
+
+    public function file_balasan($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $data = IzinKegiatan::where("id", $id)->first();
+
+            return response()->download("storage/".$data["file_surat_balasan"]);
+        });
+    }
 }

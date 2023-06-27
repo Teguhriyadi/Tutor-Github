@@ -53,6 +53,8 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/", [SuperAdminIzinKegiatanController::class, "index"]);
                 Route::get("/show/{id}", [SuperAdminIzinKegiatanController::class, "show"]);
                 Route::put("/update/{id}", [SuperAdminIzinKegiatanController::class, "update"]);
+                Route::get("/laporan/{id}", [SuperAdminIzinKegiatanController::class, "file_laporan"]);
+                Route::get("/balasan/{id}", [SuperAdminIzinKegiatanController::class, "file_balasan"]);
             });
 
             Route::prefix("profil_saya")->group(function() {
@@ -74,6 +76,7 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/", [WadirIzinKegiatanController::class, 'index']);
                 Route::get("/show/{id}", [WadirIzinKegiatanController::class, "show"]);
                 Route::put("/update/{id}", [WadirIzinKegiatanController::class, "update"]);
+                Route::get("/laporan/{id}", [WadirIzinKegiatanController::class, "file_laporan"]);
             });
 
             Route::prefix("profil_saya")->group(function() {
@@ -99,6 +102,8 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/show/{id}", [IzinKegiatanController::class, "show"]);
                 Route::put("/update/{id}", [IzinKegiatanController::class, "update"]);
                 Route::delete("/destroy/{id}", [IzinKegiatanController::class, "destroy"]);
+                Route::get("/laporan/{id}", [IzinKegiatanController::class, "file_laporan"]);
+                Route::get("/balasan/{id}", [IzinKegiatanController::class, "file_balasan"]);
             });
 
             Route::prefix("laporan_kegiatan")->group(function() {
@@ -116,6 +121,7 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/", [GantiPasswordController::class, "index"]);
                 Route::put("/update/{id}", [GantiPasswordController::class, "update"]);
             });
+            
         });
     });
     

@@ -42,7 +42,9 @@
                             <td>{{ $item["users"]["name"] }}</td>
                             <td>{{ $item["nama_kegiatan"] }}</td>
                             <td class="text-center">
-                                <i class="fa fa-download"></i>
+                                <a target="_blank" href="{{ url('/wadir/izin_kegiatan/laporan/'.$item["id"]) }}">
+                                    <i class="fa fa-download"></i>
+                                </a>
                             </td>
                             <td class="text-center">
                                 @if (empty($item["surat_balasan"]))
@@ -57,19 +59,19 @@
                             <td class="text-center">
                                 @if ($item["status"] == "1")
                                 <button class="btn btn-success btn-sm">
-                                    DISETUJUI
+                                    <i class="fa fa-check"></i> DISETUJUI
                                 </button>
                                 @elseif($item["status"] == "2")
                                 <button class="btn btn-danger btn-sm">
-                                    DITOLAK
+                                    <i class="fa fa-times"></i> DITOLAK
                                 </button>
                                 @elseif($item["status"] == "3")
                                 <button class="btn btn-primary btn-sm">
-                                    PENGAJUAN ULANG
+                                    <i class="fa fa-refresh"></i> PENGAJUAN ULANG
                                 </button>
                                 @elseif($item["status"] == "0")
                                 <button class="btn btn-default btn-sm">
-                                    BELUM DIKONFIRMASI
+                                    <i class="fa fa-minus"></i> BELUM DIKONFIRMASI
                                 </button>
                                 @endif
                             </td>
