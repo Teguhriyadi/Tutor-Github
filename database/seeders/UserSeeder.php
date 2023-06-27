@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             "id" => Uuid::uuid4()->getHex(),
             "name" => "Wadir",
             "email" => "wadir@gmail.com",
-            "password" => bcrypt("wadir"),
+            "password" => bcrypt("wadir123"),
             "role" => "wadir",
             "status" => 1
         ]);
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             "id" => Uuid::uuid4()->getHex(),
             "name" => "HIMATIF",
             "email" => "himatif@gmail.com",
-            "password" => bcrypt("himatif"),
+            "password" => bcrypt("himatif123"),
             "role" => "ormawa",
             "status" => 1
         ]);

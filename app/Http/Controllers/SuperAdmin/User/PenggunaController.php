@@ -95,4 +95,26 @@ class PenggunaController extends Controller
             return redirect("/super_admin/data_pengguna");
         });
     }
+
+    public function aktifkan($id)
+    {
+        return DB::transaction(function() use ($id) {
+            User::where("id", $id)->update([
+                "status" => "1"
+            ]);
+
+            return back()->with("message", "Data Berhasil di Aktifkan");
+        });
+    }
+
+    public function non_aktifkan($id)
+    {
+        return DB::transaction(function() use ($id) {
+            User::where("id", $id)->update([
+                "status" => "0"
+            ]);
+
+            return back()->with("message", "Data Berhasil di Non-Aktifkan");
+        });
+    }
 }

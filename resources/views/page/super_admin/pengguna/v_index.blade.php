@@ -10,6 +10,13 @@
 
 <div class="main-content">
     <div class="container-fluid">
+
+        @if (session("message"))
+        <div class="alert alert-success" role="alert">
+            <strong>Berhasil</strong>. {{ session("message") }}
+        </div>
+        @endif
+
         <a href="{{ url('/super_admin/data_pengguna/create') }}" class="btn btn-primary btn-sm">
             <i class="fa fa-plus"></i> 
             <span style="margin-left: 5px;">
@@ -57,17 +64,30 @@
                                 <td class="text-center">{{ $loop->iteration }}.</td>
                                 <td>{{ $item["name"] }}</td>
                                 <td>{{ $item["email"] }}</td>
+                                @if (Auth::user()->id == $item["id"])
+                                <td class="text-center">-</td>
+                                @else
                                 <td class="text-center">
                                     @if ($item["status"] == 1)
-                                    <button class="btn btn-success btn-sm">
-                                        Aktif
-                                    </button>
+                                    <form action="{{ url('/super_admin/data_pengguna/non_aktifkan/'.$item["id"]) }}" method="POST">
+                                        @csrf
+                                        @method("PUT")
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-times"></i> Non - Aktifkan
+                                        </button>
+                                    </form>
                                     @elseif($item["status"] == 0)
-                                    <button class="btn btn-danger btn-sm">
-                                        Tidak Aktif
-                                    </button>
+                                    <form action="{{ url('/super_admin/data_pengguna/aktifkan/'.$item['id']) }}" method="POST">
+                                        @csrf
+                                        @method("PUT")
+                                        <button type="submit" class="btn btn-success btn-sm">
+                                            <i class="fa fa-check"></i> Aktifkan
+                                        </button>
+                                    </form>
                                     @endif
                                 </td>
+
+                                @endif
                                 <td class="text-center">{{ $item["role"] }}</td>
                                 <td>{{ $item["deskripsi"] }}</td>
                                 <td class="text-center">

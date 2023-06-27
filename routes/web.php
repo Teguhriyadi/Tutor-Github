@@ -47,6 +47,8 @@ Route::group(["middleware" => ["is_admin"]], function() {
                 Route::get("/show/{id}", [PenggunaController::class, "show"]);
                 Route::put("/update/{id}", [PenggunaController::class, "update"]);
                 Route::delete("/destroy/{id}", [PenggunaController::class, "destroy"]);
+                Route::put("/non_aktifkan/{id}", [PenggunaController::class, "non_aktifkan"]);
+                Route::put("/aktifkan/{id}", [PenggunaController::class, "aktifkan"]);
             });
 
             Route::prefix("izin_kegiatan")->group(function() {
