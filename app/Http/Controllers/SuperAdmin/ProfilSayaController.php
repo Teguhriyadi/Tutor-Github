@@ -47,7 +47,7 @@ class ProfilSayaController extends Controller
                 "deskripsi" => empty($request["deskripsi"]) ? NULL : $request["deskripsi"]
             ]);
 
-            return back();
+            return back()->with("message", "Data Profil Berhasil di Perbaharui");
         });
     }
 }

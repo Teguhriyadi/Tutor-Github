@@ -8,6 +8,19 @@
 
 <div class="main-content">
     <div class="container-fluid">
+
+        @if (session("message"))
+        <div class="alert alert-success" role="alert">
+            <strong>Berhasil</strong>. {{ session("message") }}
+        </div>
+        @endif
+
+        @if (session("message_error"))
+        <div class="alert alert-danger" role="alert">
+            <strong>Maaf</strong>. {{ session("message_error") }}
+        </div>
+        @endif
+
         <form action="{{ url('/ormawa/ganti_password/update/'. Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method("PUT")

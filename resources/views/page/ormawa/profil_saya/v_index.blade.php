@@ -8,6 +8,13 @@
 
 <div class="main-content">
     <div class="container-fluid">
+
+        @if (session("message"))
+        <div class="alert alert-success" role="alert">
+            <strong>Berhasil</strong>. {{ session("message") }}
+        </div>
+        @endif
+
         <form action="{{ url('/ormawa/profil_saya/update/'. Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method("PUT")

@@ -30,13 +30,13 @@ class GantiPasswordController extends Controller
         return DB::transaction(function() use ($request) {
 
             if ($request["password_baru"] != $request["konfirmasi_password"]) {
-                return back();
+                return back()->with("message_error", "Konfirmasi Password Tidak Sesuai");
             } else {
                 User::where("id", Auth::user()->id)->update([
                     "password" => bcrypt($request["password_baru"])
                 ]);
     
-                return back();
+                return back()->with("message", "Password Berhasil di Ubah");
             }
 
         });
