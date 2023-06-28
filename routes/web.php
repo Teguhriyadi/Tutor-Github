@@ -44,6 +44,7 @@ Route::group(["middleware" => ["is_admin"]], function() {
             Route::get("/dashboard", [AppController::class, "dashboard"]);
             Route::prefix("data_pengguna")->group(function() {
                 Route::get("/", [PenggunaController::class, "index"]);
+                Route::post("/", [PenggunaController::class, "filter"]);
                 Route::get("/create", [PenggunaController::class, "create"]);
                 Route::post("/store", [PenggunaController::class, "store"]);
                 Route::get("/show/{id}", [PenggunaController::class, "show"]);

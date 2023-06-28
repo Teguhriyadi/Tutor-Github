@@ -4,6 +4,12 @@
 
 <div class="main-content">
     <div class="container-fluid">
+
+        <a href="{{ url('/super_admin/data_pengguna') }}" class="btn btn-danger btn-sm">
+            <i class="fa fa-sign-out"></i> KEMBALI
+        </a>
+        <br><br>
+
         <div class="panel panel-headline">
             <div class="panel-heading">
                 <h3 class="panel-title">

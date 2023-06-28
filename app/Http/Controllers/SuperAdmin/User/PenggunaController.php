@@ -117,4 +117,22 @@ class PenggunaController extends Controller
             return back()->with("message", "Data Berhasil di Non-Aktifkan");
         });
     }
+
+    public function filter(Request $request)
+    {
+        $messages = [
+            "required" => "Kolom :attribute Harus Diisi"
+        ];
+
+        $this->validate($request, [
+            "filter_role" => "required"
+        ], $messages);
+
+        return DB::transaction(function() use ($request) {
+            $data["pengguna"] = User::where("role", $request["filter_role"])->orderBy("created_at", "DESC")->get();
+            $data["input"] = $request["filter_role"];
+
+            return view("page.super_admin.pengguna.v_index", $data);
+        });
+    }
 }

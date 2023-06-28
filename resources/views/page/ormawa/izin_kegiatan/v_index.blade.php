@@ -16,6 +16,12 @@
             <strong>Berhasil</strong>. {{ session("message") }}
         </div>
         @endif
+
+        @if (session("message_error"))
+        <div class="alert alert-danger" role="alert">
+            <strong>Maaf</strong>. {{ session("message_error") }}
+        </div>
+        @endif
         
         <a href="{{ url('/ormawa/izin_kegiatan/create') }}" class="btn btn-primary btn-sm">
             <i class="fa fa-plus"></i> 

@@ -29,7 +29,20 @@ class AppController extends Controller
         $data["disetujui"] = IzinKegiatan::where("status", "1")->count();
         $data["laporan"] = LaporanKegiatan::count();
 
-        return view("page.wadir.dashboard", $data);
+        $kegiatan = IzinKegiatan::get();
+
+        $dataperbulan = [];
+
+        for ($bulan = 1; $bulan <= 12; $bulan++) {
+            $dataperbulan[$bulan] = 0;
+        }
+
+        foreach ($kegiatan as $izin) {
+            $bulan = date('n', strtotime($izin->created_at));
+            $dataperbulan[$bulan]++;
+        }
+
+        return view("page.wadir.dashboard", compact("kegiatan", "dataperbulan") , $data);
     }
 
     public function dashboard_ormawa()

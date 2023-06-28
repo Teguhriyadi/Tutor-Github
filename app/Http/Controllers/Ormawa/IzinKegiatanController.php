@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Ormawa;
 
 use App\Http\Controllers\Controller;
 use App\Models\IzinKegiatan;
+use App\Models\LaporanKegiatan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +25,29 @@ class IzinKegiatanController extends Controller
     
     public function create()
     {
-        return view("page.ormawa.izin_kegiatan.v_create");
+        $cek = IzinKegiatan::count();
+
+        if ($cek == 0) {
+            return view("page.ormawa.izin_kegiatan.v_create");
+        } else {
+            $kegiatan = IzinKegiatan::get();
+
+            $isData = true;
+            foreach ($kegiatan as $data) {
+                $cek = LaporanKegiatan::where("izin_kegiatan_id", $data["id"])->first();
+
+                if (!$cek) {
+                    $isData = false;
+                    break;
+                }
+            }
+
+            if (!$isData) {
+                return back()->with("message_error", "Anda Sudah Memiliki Kegiatan");
+
+            }
+        }
+
     }
     
     public function store(Request $request)

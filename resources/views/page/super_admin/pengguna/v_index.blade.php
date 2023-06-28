@@ -10,13 +10,13 @@
 
 <div class="main-content">
     <div class="container-fluid">
-
+        
         @if (session("message"))
         <div class="alert alert-success" role="alert">
             <strong>Berhasil</strong>. {{ session("message") }}
         </div>
         @endif
-
+        
         <a href="{{ url('/super_admin/data_pengguna/create') }}" class="btn btn-primary btn-sm">
             <i class="fa fa-plus"></i> 
             <span style="margin-left: 5px;">
@@ -27,17 +27,35 @@
         <div class="panel panel-headline">
             <div class="panel-heading">
                 
-                <form action="" method="POST">
+                <form action="{{ url('/super_admin/data_pengguna') }}" method="POST">
                     @csrf
-                    <div class="form-group">
+                    <div class="form-group @error("filter_role") {{ 'has-error' }}  @enderror ">
                         <div class="row">
                             <label class="control-label col-sm-1" style="margin-top: 5px;"> Filter : </label>
                             <div class="col-md-4">
-                                <select name="" class="form-control" id="">
+                                <select name="filter_role" class="form-control" id="filter_role">
+                                    @if (empty($input))
                                     <option value="">- Pilih -</option>
+                                    <option value="ormawa" {{ old('filter_role') == "ormawa" ? 'selected' : '' }} >Ormawa</option>
+                                    <option value="wadir" {{ old('filter_role') == "wadir" ? 'selected' : '' }} >Wadir</option>
+                                    <option value="admin" {{ old('filter_role') == "admin" ? 'selected' : '' }} >Admin</option>
+                                    @else
+                                    <option value="">- Pilih -</option>
+                                    <option value="ormawa" {{ $input == "ormawa" ? 'selected' : '' }}>Ormawa</option>
+                                    <option value="wadir" {{ $input == "wadir" ? 'selected' : '' }} >Wadir</option>
+                                    <option value="admin" {{ $input == "admin" ? 'selected' : '' }}  >Admin</option>
+                                    @endif
                                 </select>
                             </div>
+                            <div class="col-md-2">
+                                <input type="submit" class="btn btn-primary btn-sm" value="FILTER">
+                            </div>
                         </div>
+                        @error("filter_role")
+                        <span class="text-danger">
+                            {{ $message }}
+                        </span>
+                        @enderror
                     </div>
                 </form>
                 <hr>
@@ -86,7 +104,7 @@
                                     </form>
                                     @endif
                                 </td>
-
+                                
                                 @endif
                                 <td class="text-center">{{ $item["role"] }}</td>
                                 <td>{{ $item["deskripsi"] }}</td>

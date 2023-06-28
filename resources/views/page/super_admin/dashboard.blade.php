@@ -5,9 +5,10 @@
     <div class="main-content">
         <div class="container-fluid">
 
+            @if (session("message"))
             <div class="alert alert-success">
                 <strong>
-                    BERHASIL LOGIN
+                    {!! session("message") !!}
                 </strong>. Selamat Datang
                 <strong>
                     {{ Auth::user()->name }}
@@ -20,6 +21,7 @@
                     Silahkan Pilih Menu Untuk Memulai Program.
                 </p>
             </div>
+            @endif
 
             <div class="panel panel-headline">
                 <div class="panel-heading">

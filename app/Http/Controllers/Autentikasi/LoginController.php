@@ -36,11 +36,11 @@ class LoginController extends Controller
                         $request->session()->regenerate();
                         
                         if ($cek->role == "admin") {
-                            return redirect()->intended("/super_admin/dashboard");
+                            return redirect()->intended("/super_admin/dashboard")->with("message", "BERHASIL LOGIn");
                         } else if($cek->role == "wadir") {
-                            return redirect()->intended("/wadir/dashboard");
+                            return redirect()->intended("/wadir/dashboard")->with("message", "BERHASIL LOGIn");
                         } else if($cek->role == "ormawa") {
-                            return redirect()->intended("/ormawa/dashboard");
+                            return redirect()->intended("/ormawa/dashboard")->with("message", "BERHASIL LOGIn");
                         } else{
                             return back();
                         }
