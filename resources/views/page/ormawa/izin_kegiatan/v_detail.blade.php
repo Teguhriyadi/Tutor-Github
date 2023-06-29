@@ -91,11 +91,11 @@
                                     </button>
                                 @elseif($detail["status"] == 2)
                                 <button class="btn btn-danger btn-sm">
-                                    DITOLAK
+                                    <i class="fa fa-times"></i> DITOLAK
                                 </button>
                                 @elseif($detail['status'] == 0)
                                 <button class="btn btn-default btn-sm">
-                                    BELUM DIKONFIRMASI
+                                    <i class="fa fa-minus"></i> BELUM DIKONFIRMASI
                                 </button>
                                 @endif
                             </div>

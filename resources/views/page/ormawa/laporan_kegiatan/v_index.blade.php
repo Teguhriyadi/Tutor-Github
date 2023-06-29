@@ -61,27 +61,32 @@ use App\Models\LaporanKegiatan;
                                 @endphp
                             </td>
                             <td class="text-center">
-                                <a href="">
+                                <a target="_blank" href="{{ url('/ormawa/laporan_kegiatan/laporan/'.$item['id']) }}">
                                     <i class="fa fa-download"></i>
                                 </a>
                             </td>
                             <td class="text-center">
-                                <i class="fa fa-download"></i>
+                                @if (empty($item["laporan"]["foto_dokumentasi"]))
+                                    -
+                                @else
+                                <img src="{{ url('/storage/'.$item["laporan"]["foto_dokumentasi"]) }}" style="width: 100px;">
+                                @endif
+                                
                             </td>
                             <td class="text-center">
                                 @if ($laporan)
                                 <button class="btn btn-success btn-sm">
-                                    SELESAI
+                                    <i class="fa fa-check"></i> SELESAI
                                 </button>
                                 @else
                                 <button class="btn btn-danger btn-sm">
-                                    BELUM SELESAI
+                                    <i class="fa fa-times"></i> BELUM
                                 </button>
                                 @endif
                             </td>
                             <td class="text-center">
-                                <a href="" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-search"></i> Selengkapnya
+                                <a href="{{ url('/ormawa/laporan_kegiatan/show/'.$item["id"]) }}" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-search"></i> SELENGKAPNYA
                                 </a>
                                 @php
                                 $sekarang = strtotime(date("Y-m-d H:i:s"));
@@ -91,7 +96,7 @@ use App\Models\LaporanKegiatan;
                                 @if ($sekarang > $selesai)
                                 @if ($laporan)
                                 @else
-                                <a href="{{ url('/ormawa/laporan_kegiatan/'.$item["id"].'/unggah_laporan') }}" class="btn btn-success btn-sm">
+                                <a href="{{ url('/ormawa/laporan_kegiatan/unggah/'.$item["id"]) }}" class="btn btn-success btn-sm">
                                     <i class="fa fa-plus"></i> Unggah Laporan
                                 </a>
                                 @endif

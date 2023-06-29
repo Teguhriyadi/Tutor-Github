@@ -49,21 +49,21 @@
                             <td class="text-center">
                                 @if ($item["status"] == "1")
                                 <button class="btn btn-success btn-sm">
-                                    DISETUJUI
+                                    <i class="fa fa-check"></i> DISETUJUI
                                 </button>
                                 @elseif($item["status"] == "2")
                                 <button class="btn btn-danger btn-sm">
-                                    DITOLAK
+                                    <i class="fa fa-times"></i> DITOLAK
                                 </button>
                                 @elseif($item["status"] == "0")
                                 <button class="btn btn-default btn-sm">
-                                    BELUM DIKONFIRMASI
+                                    <i class="fa fat-minus"></i> BELUM DIKONFIRMASI
                                 </button>
                                 @endif
                             </td>
                             <td class="text-center">
                                 <a href="{{ url('/super_admin/izin_kegiatan/show/'.$item["id"]) }}" class="btn btn-primary btn-sm">
-                                    SELENGKAPNYA
+                                    <i class="fa fa-search"></i> SELENGKAPNYA
                                 </a>
                             </td>
                         </tr>

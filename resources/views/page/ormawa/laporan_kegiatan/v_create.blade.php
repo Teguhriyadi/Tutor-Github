@@ -18,7 +18,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Tambah Laporan Kegiatan</h3>
             </div>
-            <form action="{{ url('/ormawa/laporan_kegiatan/'.$id_kegiatan.'/store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/ormawa/laporan_kegiatan/store/'.$id_kegiatan) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="panel-body">
                     <div class="form-group @error("file_lpj") {{ 'has-error' }} @enderror">

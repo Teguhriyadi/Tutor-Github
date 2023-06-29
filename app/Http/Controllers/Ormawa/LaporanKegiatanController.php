@@ -64,4 +64,40 @@ class LaporanKegiatanController extends Controller
             return redirect("/ormawa/laporan_kegiatan")->with("message", "Data Berhasil di Simpan");
         });
     }
+
+    public function show($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $data["detail"] = IzinKegiatan::where("id", $id)->first();
+
+            return view("page.ormawa.laporan_kegiatan.v_detail", $data);
+        });
+    }
+
+    public function laporan($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $izin = IzinKegiatan::where("id", $id)->first();
+
+            return response()->download("storage/".$izin["file_laporan"]);
+        });
+    }
+
+    public function balasan($id)
+    {
+        return DB::transaction(function () use ($id) {
+            $balasan = IzinKegiatan::where("id", $id)->first();
+
+            return response()->download("storage/".$balasan["file_surat_balasan"]);
+        });
+    }
+
+    public function lpj($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $laporan = LaporanKegiatan::where("id", $id)->first();
+
+            return response()->download("storage/".$laporan["file_lpj"]);
+        });
+    }
 }

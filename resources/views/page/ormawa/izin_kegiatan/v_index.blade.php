@@ -97,6 +97,10 @@
                                     <i class="fa fa-edit"></i> Edit
                                 </a>
                                 @endif
+
+                                @if (!empty($item["user_validasi_id"]))
+                                    
+                                @else
                                 <form action="{{ url('/ormawa/izin_kegiatan/destroy/'.$item["id"]) }}" method="POST" style="display: inline;">
                                     @csrf
                                     @method("DELETE")
@@ -104,6 +108,7 @@
                                         <i class="fa fa-trash"></i> Hapus
                                     </button>
                                 </form>
+                                @endif
                             </td>
                         </tr>
                         @endforeach

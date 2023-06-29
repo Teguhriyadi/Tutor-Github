@@ -87,8 +87,10 @@ Route::group(["middleware" => ["is_admin"]], function() {
             Route::prefix("izin_kegiatan")->group(function() {
                 Route::get("/", [WadirIzinKegiatanController::class, 'index']);
                 Route::get("/show/{id}", [WadirIzinKegiatanController::class, "show"]);
+                Route::get("/edit/{id}", [WadirIzinKegiatanController::class, "edit"]);
                 Route::put("/update/{id}", [WadirIzinKegiatanController::class, "update"]);
                 Route::get("/laporan/{id}", [WadirIzinKegiatanController::class, "file_laporan"]);
+                Route::get("/balasan/{id}", [WadirIzinKegiatanController::class, "file_balasan"]);
             });
 
             Route::prefix("laporan_kegiatan")->group(function() {
@@ -125,8 +127,12 @@ Route::group(["middleware" => ["is_admin"]], function() {
 
             Route::prefix("laporan_kegiatan")->group(function() {
                 Route::get("/", [LaporanKegiatanController::class, "index"]);
-                Route::get("{id}/unggah_laporan", [LaporanKegiatanController::class, "create"]);
-                Route::post("/{id}/store", [LaporanKegiatanController::class, "store"]);
+                Route::get("/unggah/{id}", [LaporanKegiatanController::class, "create"]);
+                Route::post("/store/{id}", [LaporanKegiatanController::class, "store"]);
+                Route::get("/show/{id}", [LaporanKegiatanController::class, "show"]);
+                Route::get("/laporan/{id}", [LaporanKegiatanController::class, "laporan"]);
+                Route::get("/balasan/{id}", [LaporanKegiatanController::class, "balasan"]);
+                Route::get("/lpj/{id}", [LaporanKegiatanController::class, "lpj"]);
             });
 
             Route::prefix("profil_saya")->group(function() {

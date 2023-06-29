@@ -47,12 +47,14 @@
                                 </a>
                             </td>
                             <td class="text-center">
-                                @if (empty($item["surat_balasan"]))
+                                @if (empty($item["file_surat_balasan"]))
                                     <span class="text-danger">
                                         Belum Ada Surat Balasan    
                                     </span>  
                                 @else
-                                <i class="fa fa-download"></i>
+                                <a target="_blank" href="{{ url('/wadir/izin_kegiatan/balasan/'.$item["id"]) }}">
+                                    <i class="fa fa-download"></i>
+                                </a>
                                 @endif
                             </td>
                             <td>{{ $item["tempat"] }}</td>
@@ -76,12 +78,20 @@
                                 @endif
                             </td>
                             <td class="text-center">
-                                @if ($item["status"] == "1")
-                                -                                    
-                                @else
-                                <a href="{{ url('/wadir/izin_kegiatan/show/'.$item["id"]) }}" class="btn btn-info btn-sm">
-                                    <i class="fa fa-search"></i> Selengkapnya
+                                <a href="{{ url('/wadir/izin_kegiatan/show/'.$item["id"]) }}" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-search"></i> SELENGKAPNYA
                                 </a>
+
+                                @if (empty($item["user_validasi_id"]))
+                                    
+                                @else
+                                    @if (empty($item["file_surat_balasan"]))
+                                    <a href="{{ url('/wadir/izin_kegiatan/edit/'.$item["id"]) }}" class="btn btn-warning btn-sm">
+                                        <i class="fa fa-edit"></i> Edit
+                                    </a>
+                                    @else
+
+                                    @endif
                                 @endif
                             </td>
                         </tr>

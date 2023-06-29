@@ -27,6 +27,6 @@ class IzinKegiatan extends Model
 
     public function laporan()
     {
-        return $this->hasOne("App\Models\LaporanKegiatan", "id", "izin_kegiatan_id");
+        return $this->belongsTo("App\Models\LaporanKegiatan", "id", "izin_kegiatan_id");
     }
 }

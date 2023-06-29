@@ -49,7 +49,7 @@ use Carbon\Carbon;
                                 {{ $detail["file_laporan"] }}
                                 <br>
                                 <a target="_blank" href="{{ url('/super_admin/izin_kegiatan/laporan/'.$detail['id']) }}" class="btn btn-primary btn-sm">
-                                    Unduh File
+                                    <i class="fa fa-download"></i> Unduh File
                                 </a>
                             </div>
                         </div>
@@ -85,7 +85,7 @@ use Carbon\Carbon;
                             <label for="status" class="control-label col-sm-3"> Status </label>
                             <div class="col-md-7">
                                 <button class="btn btn-success btn-sm">
-                                    DISETUJUI
+                                    <i class="fa fa-check"></i> DISETUJUI
                                 </button>
                             </div>
                         </div>

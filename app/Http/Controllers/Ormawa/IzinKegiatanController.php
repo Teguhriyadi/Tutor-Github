@@ -45,6 +45,8 @@ class IzinKegiatanController extends Controller
             if (!$isData) {
                 return back()->with("message_error", "Anda Sudah Memiliki Kegiatan");
 
+            } else {
+                return view("page.ormawa.izin_kegiatan.v_create");
             }
         }
 
@@ -172,9 +174,23 @@ class IzinKegiatanController extends Controller
                 "mulai" => $request["mulai"],
                 "akhir" => $request["akhir"],
                 "status" => "3",
+                "is_validasi" => NULL
             ]);
             
             return redirect("/ormawa/izin_kegiatan")->with("message", "Data Berhasil di Simpan");
+        });
+    }
+
+    public function destroy($id)
+    {
+        return DB::transaction(function() use ($id) {
+            $izin = IzinKegiatan::where("id", $id)->first();
+            
+            Storage::delete($izin["file_laporan"]);
+
+            $izin->forceDelete();
+            
+            return back()->with("message", "Data Berhasil di Hapus");
         });
     }
 

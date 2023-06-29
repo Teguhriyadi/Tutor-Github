@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text("komentar")->nullable();
             $table->string("file_surat_balasan")->nullable();
             $table->string("user_validasi_id", 100)->nullable();
+            $table->tinyInteger("is_validasi")->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

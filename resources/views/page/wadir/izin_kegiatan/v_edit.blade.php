@@ -20,7 +20,7 @@ use Carbon\Carbon;
             <div class="panel-heading">
                 <h3 class="panel-title">Izin Kegiatan</h3>
             </div>
-            <form action="{{ url('/wadir/izin_kegiatan/update/'.$detail['id']) }}" method="POST">
+            <form action="{{ url('/wadir/izin_kegiatan/update/'.$edit['id']) }}" method="POST">
                 @csrf
                 @method("PUT")
                 <div class="panel-body">
@@ -28,7 +28,7 @@ use Carbon\Carbon;
                         <div class="row">
                             <label for="nama_ukm" class="control-label col-sm-3"> Nama UKM </label>
                             <div class="col-md-7">
-                                {{ $detail["users"]["name"] }}
+                                {{ $edit["users"]["name"] }}
                             </div>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ use Carbon\Carbon;
                         <div class="row">
                             <label for="nama_kegiatan" class="control-label col-sm-3"> Nama Kegiatan </label>
                             <div class="col-md-7">
-                                {{ $detail["nama_kegiatan"] }}
+                                {{ $edit["nama_kegiatan"] }}
                             </div>
                         </div>
                     </div>
@@ -46,9 +46,9 @@ use Carbon\Carbon;
                                 File Laporan
                             </label>
                             <div class="col-md-7">
-                                {{ $detail["file_laporan"] }}
+                                {{ $edit["file_laporan"] }}
                                 <br>
-                                <a target="_blank" href="{{ url('/wadir/izin_kegiatan/laporan/'.$detail['id']) }}" class="btn btn-primary btn-sm">
+                                <a target="_blank" href="{{ url('/wadir/izin_kegiatan/laporan/'.$edit['id']) }}" class="btn btn-primary btn-sm">
                                     Unduh File
                                 </a>
                             </div>
@@ -59,13 +59,13 @@ use Carbon\Carbon;
                             <label for="waktu_pelaksanaan" class="control-label col-sm-3"> Waktu Pelaksanaan </label>
                             <div class="col-md-7">
                                 @php
-                                $mulai = Carbon::createFromFormat('Y-m-d H:i:s', $detail->mulai);
+                                $mulai = Carbon::createFromFormat('Y-m-d H:i:s', $edit->mulai);
                                 $format = $mulai->isoFormat('dddd, D MMMM YYYY HH:mm:ss');
                                 echo $format;
                                 @endphp 
                                 -
                                 @php
-                                $akhir = Carbon::createFromFormat('Y-m-d H:i:s', $detail->akhir);
+                                $akhir = Carbon::createFromFormat('Y-m-d H:i:s', $edit->akhir);
                                 $format = $akhir->isoFormat('dddd, D MMMM YYYY HH:mm:ss');
                                 echo $format;
                                 @endphp
@@ -76,11 +76,11 @@ use Carbon\Carbon;
                         <div class="row">
                             <label for="tempat_pelaksanaan" class="control-label col-sm-3"> Tempat Pelaksanaan </label>
                             <div class="col-md-7">
-                                {{ $detail["tempat"] }}
+                                {{ $edit["tempat"] }}
                             </div>
                         </div>
                     </div>
-                    @if (empty($detail["komentar"]))
+                    @if (empty($edit["komentar"]))
                         
                     @else
                     <div class="form-group">
@@ -89,23 +89,21 @@ use Carbon\Carbon;
                             <div class="col-md-7">
                                 <span class="text-danger">
                                     <strong>
-                                        {{ $detail['komentar'] }}
+                                        {{ $edit['komentar'] }}
                                     </strong>
                                 </span>
                             </div>
                         </div>
                     </div>
                     @endif
-
-                    @if (empty($detail['is_validasi']))
                     <div class="form-group @error("status") {{ 'has-error' }} @enderror">
                         <div class="row">
                             <label for="status" class="control-label col-sm-3"> Status </label>
                             <div class="col-md-7">
                                 <select name="status" class="form-control" id="status">
                                     <option value="">- Pilih -</option>
-                                    <option value="1" {{ old('status') == "1" ? 'selected' : '' }} >Disetujui</option>
-                                    <option value="2" {{ old('status') == "2" ? 'selected' : '' }} >Ditolak</option>
+                                    <option value="1" {{ $edit["status"] == "1" ? 'selected' : '' }} >Disetujui</option>
+                                    <option value="2" {{ $edit["status"] == "2" ? 'selected' : '' }} >Ditolak</option>
                                 </select>
                             </div>
                         </div>
@@ -114,21 +112,7 @@ use Carbon\Carbon;
                                 {{ $message }}
                             </span>
                         @enderror
-                    </div> 
-                    @else
-                    <div class="form-group">
-                        <div class="row">
-                            <label class="control-label col-sm-3"> Status </label>
-                            <div class="col-md-7">
-                                @if ($detail["status"] == "1")
-                                    Disetujui
-                                @elseif($detail["status"] == "2")
-                                    Ditolak
-                                @endif
-                            </div>
-                        </div>
                     </div>
-                    @endif
                     <div class="form-group" style="display: none" id="view_komentar">
                         <div class="row">
                             <label for="komentar" class="control-label col-sm-3"> Komentar </label>
@@ -137,8 +121,6 @@ use Carbon\Carbon;
                             </div>
                         </div>
                     </div>
-
-                    @if (empty($detail["is_validasi"]))
                     <hr>
                     <button type="reset" class="btn btn-danger">
                         BATAL
@@ -146,10 +128,6 @@ use Carbon\Carbon;
                     <button type="submit" class="btn btn-primary">
                         SIMPAN
                     </button>
-                    @else
-
-                    @endif
-
                 </div>
             </form>
         </div>
